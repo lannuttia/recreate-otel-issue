@@ -1,3 +1,5 @@
+I am using Python 3.12.11 to recreate this issue
+
 Without opentelemetry-instrument everything works as expected:
 
 ```shell
