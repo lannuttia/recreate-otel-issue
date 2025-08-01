@@ -1,0 +1,31 @@
+---
+version: "3.7"
+services:
+  otel-collector:
+    image: docker.io/otel/opentelemetry-collector-contrib:0.105.0
+    hostname: otel-collector
+    container_name: otel-collector
+    deploy:
+      resources:
+        limits:
+          cpus: "0.500"
+          memory: 256M
+        requests:
+          cpus: "0.250"
+          memory: 128M
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - "./otel-collector-config.yaml:/etc/otel-collector-config.yaml:Z"
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    depends_on:
+      - jaeger-all-in-one
+
+  jaeger-all-in-one:
+    image: docker.io/jaegertracing/all-in-one:1.57
+    hostname: jaeger-all-in-one
+    container_name: jaeger-all-in-one
+    ports:
+      - "16686:16686"
+      - "14250:14250"
