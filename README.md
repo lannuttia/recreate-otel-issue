@@ -14,7 +14,6 @@ $ opentelemetry-instrument python -m uvicorn issue.start:app
 $ curl http://127.0.0.1:8000/
 ```
 
-```
 
 Output of `opentelemetry-bootstrap`:
 
